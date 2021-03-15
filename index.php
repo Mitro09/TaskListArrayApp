@@ -79,16 +79,7 @@ else{
                 <tr>
                     <td><?=$taskName?></td>
                     <td class="text-center">
-                        <span class="<?php if ($status=="todo"){
-                            echo "badge bg-danger text-uppercase";
-                            }
-                            elseif( $status=="done"){
-                                echo "badge bg-secondary text-uppercase";
-                            }
-                            else{
-                                echo "badge bg-primary text-uppercase";
-                            }
-                            ?>"><?=$status?></span>
+                        <span class="<?php echo getColor($status)?>"><?=$status?></span>
                     </td>
                     <td class="text-nowrap">
                         3 Luglio

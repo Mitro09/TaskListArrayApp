@@ -20,3 +20,15 @@ function searchStatus(string $status) : callable {
 } 
 
 
+function getColor(string $status){
+    if ($status=="todo"){
+        $color = "badge bg-danger text-uppercase";
+    }
+    elseif( $status=="done"){
+        $color = "badge bg-secondary text-uppercase";
+    }
+    else{
+        $color = "badge bg-primary text-uppercase";
+    }
+    return $color;
+}
