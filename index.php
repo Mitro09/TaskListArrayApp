@@ -1,9 +1,17 @@
 <?php
-
+require "./lib/searchFunctions.php";
 require "./lib/JSONReader.php";
 
 $taskList = JSONReader('./dataset/TaskList.json');
 
+
+if(isset($_GET['searchText']) && trim($_GET['searchText']) !== ''){
+    $searchText = trim(filter_var($_GET['searchText'], FILTER_SANITIZE_STRING)); 
+    $taskList = array_filter($taskList,searchText($searchText));
+}
+else{
+    $searchText = '';
+}
 
 ?>
 
@@ -18,7 +26,7 @@ $taskList = JSONReader('./dataset/TaskList.json');
     <title>Tasklist</title>
 </head>
 <body>
-
+<form action="index.php">
     <div class="container-fluid bg-secondary py-3 mb-3 text-light">
         <div class="container">
             <h1 class="display-1">Tasklist</h1>
@@ -30,7 +38,7 @@ $taskList = JSONReader('./dataset/TaskList.json');
             <label class="w-100 pb-1 fw-bold" for="searchText">Cerca</label>
             <input name ="searchText" id="searchText"  type="text" class="form-control" placeholder="attività da cercare" value="<?=$searchText ?>">
             <div class="input-group-append">
-              <button class="btn btn-primary" type="button">Invia</button>
+              <button class="btn btn-primary" type="submit">Invia</button>
             </div>
         </div>
 
@@ -53,7 +61,7 @@ $taskList = JSONReader('./dataset/TaskList.json');
                 <label class="form-check-label" >fatto</label>
               </div>
         </div>
-    
+</form>
         <section class="tasklist mt-3">
             <h1 class="fw-bold fs-6">Elenco delle attività</h1>
             <table class="table">
