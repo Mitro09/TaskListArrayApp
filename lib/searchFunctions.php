@@ -4,8 +4,17 @@
  * Programmazione Funzionale - dichiarativo 
  */
 function searchText($searchText) {
+
     return function ($taskItem) use ($searchText){
-        $result = strpos($taskItem['taskName'], $searchText) !== false;
+        $noSpaces = preg_replace('/[ ]+/m',' ',$searchText);
+        $lowerString = strtolower($taskItem['taskName']);
+        $lowerSearch = trim(strtolower($noSpaces));
+        if ($lowerSearch !== ''){
+            $result = strpos($lowerString, $lowerSearch) !== false;
+        }
+        else{
+            $result = true;
+        }
         return $result;
     };
 }
@@ -15,8 +24,16 @@ function searchText($searchText) {
  * (progress|done|todo)
  * @return callable La funzione che verrà utilizzata da array_filter
  */
-function searchStatus(string $status) : callable {
-    
+function searchStatus(string $status) {
+    return function($taskItem) use ($status){
+        if (($status === '') || ($status === 'all')){
+            $result = true;
+        }
+        else{
+            $result = strpos($taskItem['status'],$status) !== false;
+        }
+        return $result;
+    };  
 } 
 
 

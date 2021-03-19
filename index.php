@@ -71,9 +71,10 @@ else{
                     <th class="text-center">data</th>
                 </tr>
                 <?php
-                foreach ($taskList as $key => $task){
+                foreach ($taskList as $task){
                     $status = $task['status'];
                     $taskName = $task['taskName'];
+                    $date = $task['expirationDate'];
                 ?>
                 
                 <tr>
@@ -81,9 +82,7 @@ else{
                     <td class="text-center">
                         <span class="<?php echo getColor($status)?>"><?=$status?></span>
                     </td>
-                    <td class="text-nowrap">
-                        3 Luglio
-                    </td>
+                    <td class="text-nowrap"><?=$date?></td>
                 </tr>
                 <!--<tr>
                     <td>Comprare la farina</td>

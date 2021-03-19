@@ -1,4 +1,5 @@
 <?php
+require "../vendor/testTools/testTool.php";
 require "./searchFunctions.php";
 
 
