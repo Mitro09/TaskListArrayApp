@@ -1,5 +1,5 @@
 # Tasklist App
-GUARDARE BRANCH DEV
+FINISH
 # Fare il Fork del progetto
 
 da non fare:
