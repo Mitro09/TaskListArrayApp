@@ -13,6 +13,22 @@ else{
     $searchText = '';
 }
 
+
+
+if (isset($_GET['status'])){
+    $status = ($_GET['status']);
+    $taskList = array_filter($taskList,searchStatus($status));
+    if ($status==('all')){
+        $taskList = JSONReader('./dataset/TaskList.json');
+        if(isset($_GET['searchText']) && trim($_GET['searchText']) !== ''){
+            $searchText = trim(filter_var($_GET['searchText'], FILTER_SANITIZE_STRING)); 
+            $taskList = array_filter($taskList,_searchText($searchText));
+        }
+    }
+}
+else{
+    $status='all';
+}
 ?>
 
 
@@ -45,19 +61,19 @@ else{
         <div id="status-radio" class=" mb-3">
             <div class="fw-bold pe-2 w-100">Stato attività</div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" value="all">
+                <input class="form-check-input" type="radio" name="status" value="all"  <?php if ($status == "all") echo "checked";?>>
                 <label class="form-check-label" >tutti</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" value="todo">
+                <input class="form-check-input" type="radio" name="status" value="todo"  <?php if ($status == "todo") echo "checked";?>>
                 <label class="form-check-label" >da fare</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" value="progress">
+                <input class="form-check-input" type="radio" name="status" value="progress"  <?php if ($status == "progress") echo "checked";?>>
                 <label class="form-check-label" >in lavorazione</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="status" value="done">
+                <input class="form-check-input" type="radio" name="status" value="done"  <?php if ($status == "done") echo "checked";?>>
                 <label class="form-check-label" >fatto</label>
               </div>
         </div>
