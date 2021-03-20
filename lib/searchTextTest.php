@@ -46,7 +46,7 @@ $testCases = [
     ]
 ];
 
-$mockTaskList = array(
+$taskList = array(
     array("id"=>4574,"taskName"=>"Mangiare la verdura","status"=>"done","expirationDate"=>"2021-03-01"),
     array("id"=>6727,"taskName"=>"Fare esercizi di php","status"=>"todo","expirationDate"=>"2021-03-20"),
     array("id"=>4639,"taskName"=>"Latte detergente","status"=>"progress","expirationDate"=>"2021-09-02"),
@@ -61,7 +61,7 @@ $mockTaskList = array(
 
 foreach ($testCases as $testCase) {
     extract($testCase);
-    $actual = array_filter($mockTaskList, searchText($searchText));
+    $actual = array_filter($taskList, searchText($searchText));
     
     assertEquals('array', gettype($actual),'il risultato è un ');
     assertEquals($expectedCount, count($actual), $description);

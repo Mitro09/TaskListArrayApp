@@ -7,10 +7,11 @@ function searchText($searchText) {
 
     return function ($taskItem) use ($searchText){
         $noSpaces = preg_replace('/[ ]+/m',' ',$searchText);
-        $lowerString = strtolower($taskItem['taskName']);
+        //$lowerString = strtolower($taskItem['taskName']);
         $lowerSearch = trim(strtolower($noSpaces));
+        //echo $lowerSearch;
         if ($lowerSearch !== ''){
-            $result = strpos($lowerString, $lowerSearch) !== false;
+            $result = stripos($taskItem['taskName'], $lowerSearch) !== false;
         }
         else{
             $result = true;
