@@ -25,7 +25,7 @@ function searchText($searchText) {
  * (progress|done|todo)
  * @return callable La funzione che verrà utilizzata da array_filter
  */
-function searchStatus(string $status) {
+function searchStatus($status) {
     return function($taskItem) use ($status){
         if (($status === '') || ($status === 'all')){
             $result = true;
@@ -38,7 +38,7 @@ function searchStatus(string $status) {
 } 
 
 
-function getColor(string $status){
+function getColor($status){
     if ($status=="todo"){
         $color = "badge bg-danger text-uppercase";
     }
